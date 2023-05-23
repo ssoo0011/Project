@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+  <title>Title</title>
+</head>
+<body>
+<a th:href="@{/home/}">홈</a>
+<form th:action="@{/post/modify}" method="post" id="postDetailForm" enctype="multipart/form-data">
+  <div class="container my-3" >
+    <!-- 게시글 -->
+    <label>제목</label>
+    <input type="text" class="form-control" th:value="${post.title}" name ='title' id="title"></h2>
+    <input type="hidden" th:value="${post.bno}" name="bno">
+    <label>내용</label>
+    <div class="card my-3">
+      <div class="card-body">
+        <span th:text="${post.getVisitPost()}"></span>
+        <textarea class="form-control" name="content" id="content" rows="30" placeholder="내용">[[${post.content}]]</textarea>
+        <div class="d-flex justify-content-end">
+          <div class="badge bg-light text-dark p-2 text-start">
+            <div th:text="${#temporals.format(post.postDate, 'yyyy-MM-dd HH:mm')}"></div>
+          </div>
+          <div class="mb-3">
+            <label for="imgFile" class="form-label" multiple>사진업로드</label>
+            <input type="file" class="form-control" id="imgFile" name="imgFile">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">공개여부</label>
+      <input type="radio" name="pub" value="t" class="form-check-input" checked>공개</input>
+      <input type="radio" name="pub" value="f" class="form-check-input">비공개</input>
+    </div>
+      <button type="button" id="modifyBtn">수정하기</button>
+    </div>
+</form>
+</body>
+</html>
+<script th:inline="javascript">
+  /*<![CDATA[*/
+  var title = /*[[${post.title}]]*/
+
+  let p1 = false;
+  let p2 = false;
+
+  $(function (){
+    if ( $('#title').val() != ''){
+      p1 = true;
+    }else p1 = false
+
+    if ( $('#content').val() != ''){
+      p2 = true;
+    }else p2 = false
+  })
+  //타이틀 공백 파악
+  //제목 / 내용 둘 다 입력했을 때만 이동할 수 있도록
+  $('#modifyBtn').on('click', function (){
+
+    if (p1 && p2){
+      $('#modifyBtn').attr('type', 'submit')
+    }else if(p1 == false){
+      $('#title').focus();
+      alert('제목을 입력하세요')
+    }else if(p2 == false){
+      $('#content').focus();
+      alert('내용을 입력하세요')
+    } else $('#title').focus();
+  })
+  /*]]>*/
+</script>

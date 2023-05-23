@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <title>Title</title>
+  </head>
+  <body>
+  <a th:href="@{/home/}">홈</a>
+  <form th:action="@{/updateInfor}" method="post" id="userInfor">
+    <span>이름</span> <input type="text" name="userName"  th:placeholder="${owner.userName}" readonly><br>
+    <span>아이디</span> <input type="text" name="userId" id="userId"
+                            oninput="idCheck()"  th:placeholder="${owner.userId}" readonly><br>
+    <span class="id_ok"></span>
+    <br>
+    <span>비밀번호</span> <input type="password" name="userPw" class="pw1" placeholder="비밀번호">
+    <span>비밀번호 확인</span> <input type="password" class="pw2" placeholder="비밀번호 확인" oninput="pwConfirm()"><br>
+    <span class="pwCon"></span><br>
+    </div>
+    <button type="button" id="updateBtn" onclick="updateFun()">회원정보 수정</button>
+  </form>
+  </body>
+</html>
+<script>
+  let b1 = false;
+  //비밀번호 확인
+  function pwConfirm() {
+    if ($('.pw1').val() === $('.pw2').val()) {
+      $('.pwCon').text('비밀번호 일치').css('color', 'green')
+      b1 = true;
+    } else {
+      $('.pwCon').text('비밀번호 불일치').css('color', 'red')
+      b1 = false;
+    }
+  }
+
+  function updateFun(){
+    if($('.pw1').val() == "" && $('.pw2').val() == ""){
+      alert("비밀번호를 한 자리 이상 입력하세요")
+    }else if(b1){
+      $("#updateBtn").attr("type", "submit")
+    }
+  }
+</script>

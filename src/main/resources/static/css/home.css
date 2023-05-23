@@ -1,0 +1,202 @@
+*{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+#nav{
+    width: 100%;
+    height: 80px;
+    display: block;
+}
+#home{
+    width: 10%;
+    float: left;
+    height: 100%;
+    float: left;
+    text-align: center;
+    padding-top: 40px;
+    box-sizing: border-box;
+}
+#regist, #login{
+    padding-top: 40px;
+    box-sizing: border-box;
+    width: 7%;
+    height: 100%;
+    float: right;
+    text-align: center;
+}
+#userInfor, #mySchedule, #logout, #greeting{
+    padding-top: 40px;
+    box-sizing: border-box;
+    width: 9%;
+    height: 100%;
+    float: right;
+    text-align: center;
+}
+#greeting{
+    padding-top: 40px;
+    height: 100%;
+    box-sizing: border-box;
+    width: 50%;
+    text-align: center;
+    float: right;
+}
+.label{
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+#travle{
+    display: block;
+    width: 100%;
+    height: 400px;
+    background-color: red;
+}
+#goDate{
+    position: relative;
+    bottom: 350px;
+    margin: 0 auto;
+    width: 50%;
+    float: left;
+    padding-top: 60px;
+    box-sizing: border-box;
+}
+
+#date{
+    display: block;
+    width: 240px;
+    height: 40px;
+}
+#spot{
+    position: relative;
+    bottom: 350px;
+    margin: 0 auto;
+    width: 50%;
+    float: left;
+    padding-top: 60px;
+    box-sizing: border-box;
+}
+#travleSpot{
+    width: 120px;
+    height: 30%;
+}
+.search_boxes{
+    width: 200px;
+    height: 40px;
+}
+.label{
+    width: 100%;
+    height: 20%;
+    display: block;
+    text-align: center;
+}
+#btnDiv{
+    margin: 0 auto;
+    height: 100px;
+    width: 100%;
+}
+
+#goBtn {
+    display: block;
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    height: 55px;
+    margin-top: 10px;
+    text-align:center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+}
+
+#goBtn:hover {
+    background-position: 100% 0;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+#goBtn:focus {
+    outline: none;
+}
+#goBtn {
+    position: relative;
+    bottom: 390px;
+    background-image: linear-gradient(to right, #25aae1, #4481eb, #04befe, #3f86ed);
+    box-shadow: 0 4px 15px 0 rgba(65, 132, 234, 0.75);
+}
+#popList{
+    position: relative;
+    bottom: 350px;
+    margin: 0 auto;
+    width: 100%;
+    height: 500px;
+}
+#popPost, #popSpot{
+    width: 46%;
+    height: 500px;
+    float: left;
+    margin-left: 1%;
+}
+.title{
+    width: 100%;
+    height: 50px;
+    margin-left: 30px;
+}
+.popPostList{
+    width: 40%;
+    height: 200px;
+    background-color: lightyellow;
+    float: left;
+    margin: 15px;
+}
+
+table.popPostListTbl {
+    border-collapse: separate;
+    border-spacing: 1px;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    margin : 20px 10px;
+}
+table.popPostListTbl th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table.popPostListTbl td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+table{
+    height: 10%;
+    margin: 20px;
+}
+th:first-child{
+    width: 10%;
+}
+th:nth-child(2){
+    width: 70%;
+}
+#line{
+    width: 1px;
+    height: 500px;
+    background-color: lightslategray;
+    float: left;
+}
+hr{
+    position: relative;
+    bottom: 350px;
+    width: 100%;
+    height: 2px;
+    border : 0;
+    background-color: lightgray;
+    margin-bottom: 30px;
+}
