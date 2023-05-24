@@ -1,39 +1,25 @@
-@font-face {
-    font-family: 'Dovemayo_gothic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.1/Dovemayo_gothic.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+
+img{
+    margin: auto;
+    display: block;
+    max-height: 15%;
+    max-width: 15%;
+    margin-top: 100px;
 }
-body{
-    font-family: 'Dovemayo_gothic';
+img:hover{
+    cursor: pointer;
 }
 
-.wrap{
-    /*height: 800px;*/
+#wrap{
+    height: 800px;
     width: 500px;
     margin: auto;
-    margin-top: 20px;
     background-color: white;
 }
-.wrap > span{
+#wrap > span{
     width: 150px;
     height: 50px;
     display: inline-block;
-    /* text-align: center; */
-}
-div{
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-.alert{
-    margin: 0 auto;
-    padding: 10px;
-    text-align: center;
-    width: 70%;
-    height: 30%;
-    background-color: #ffeeee;
-    border-radius: 5px;
-    color: red;
 }
 button {
     border: none;
@@ -42,33 +28,24 @@ button {
     margin-left: 5px;
     border-radius: 5px;
     font-size: 10px;
-    background: #FF98A3;
+    background-color: lightskyblue;
     color: #fff;
     font-size: 11px;
 
 }
 button:hover{
     cursor: pointer;
-    background-color: #FFF0F5;
-    color : #FF98A3;
-    border: 2px solid #FF98A3;
-}
-.wrap > #em{
-    margin-right: 5px;
+    background-color: #61c0ff;
+    color : #ffffff;
+    border: #4ebaff;
 }
 
-[type = 'text'], [type = 'password'], textarea {
+[type = 'text'], [type = 'password'] {
     background-color: #eeecec;
     height: 40px;
     width: 200px;
     border: none;
     border-radius: 5px;
-}
-textarea{
-    margin-top: 20px;
-    display: block;
-    height: 70%;
-    width: 70%;
 }
 select {
     width:100px;

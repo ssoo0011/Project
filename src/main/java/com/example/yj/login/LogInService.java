@@ -27,14 +27,4 @@ public class LogInService {
             } else return false;
         }else return false;
     }
-
-    public boolean ownerLoginConfirm(String userId, String userPw){
-        Optional<Owner> findOwner = ownerRepository.findById(userId);
-        if(findOwner.isPresent()){
-            if(findOwner.get().getUserPw().equals(userPw)) {
-                return true;
-            } else return false;
-        }
-        return false;
-    }
 }

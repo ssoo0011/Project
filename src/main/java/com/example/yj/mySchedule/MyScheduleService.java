@@ -20,4 +20,8 @@ public class MyScheduleService {
         List<MySchedule> ScheduleList  = myScheduleRepository.findByUserId(loginId);
         return ScheduleList;
     }
+
+    public void getSpotList(){
+
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.yj.mySchedule;
 
 import com.example.yj.entity.MySchedule;
-import com.example.yj.entity.Post;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -29,5 +29,11 @@ public class MyScheduleController {
             model.addAttribute("ScheduleList", ScheduleList);
         }
         return "mySchedule_form";
+    }
+
+    @PostMapping("/makeSchedule")
+    public String makeSchedule(Date startDate, String spot){
+
+        return "";
     }
 }

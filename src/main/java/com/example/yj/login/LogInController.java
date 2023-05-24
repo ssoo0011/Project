@@ -1,13 +1,12 @@
 package com.example.yj.login;
 
-import com.example.yj.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -22,24 +21,15 @@ public class LogInController {
     }
 
     @PostMapping("/login/user")
-    public String userConfirm(String userId, String userPw, HttpSession session){
-        
-        if(logInService.userLoginConfirm(userId, userPw)){
-            
-            session.setAttribute("loginId", userId); // 로그인한 아이디 세션 저장
-            session.setAttribute("userType", "user"); // 로그인한 유저타입 세션 저장
-            return "redirect:/home/";
+    @ResponseBody
+    public int userConfirm(@RequestParam("id") String id, @RequestParam("pw") String pw, HttpSession session){
+        int cnt = 0;
+        if(logInService.userLoginConfirm(id, pw)){
+            session.setAttribute("loginId", id); // 로그인한 아이디 세션 저장
+            cnt = 1;
+            return cnt;
         }
-        return "login_form";
-    }
-    @PostMapping("/login/owner")
-    public String ownerConfirm(String userId, String userPw, HttpSession session){
-        if(logInService.ownerLoginConfirm(userId, userPw)){
-            session.setAttribute("loginId", userId);
-            session.setAttribute("userType", "owner");
-            return "home_form";
-        }
-        return "login_form";
+        return cnt;
     }
 
     @GetMapping("/logout")

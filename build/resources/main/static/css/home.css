@@ -15,11 +15,11 @@
     height: 100%;
     float: left;
     text-align: center;
-    padding-top: 40px;
+    padding-top: 25px;
     box-sizing: border-box;
 }
 #regist, #login{
-    padding-top: 40px;
+    padding-top: 25px;
     box-sizing: border-box;
     width: 7%;
     height: 100%;
@@ -27,7 +27,7 @@
     text-align: center;
 }
 #userInfor, #mySchedule, #logout, #greeting{
-    padding-top: 40px;
+    padding-top: 25px;
     box-sizing: border-box;
     width: 9%;
     height: 100%;
@@ -35,7 +35,7 @@
     text-align: center;
 }
 #greeting{
-    padding-top: 40px;
+    padding-top: 25px;
     height: 100%;
     box-sizing: border-box;
     width: 50%;
@@ -47,11 +47,10 @@
     font-size: 25px;
     font-weight: bold;
 }
-#travle{
+#travel{
     display: block;
     width: 100%;
     height: 400px;
-    background-color: red;
 }
 #goDate{
     position: relative;
@@ -131,20 +130,24 @@
 #popList{
     position: relative;
     bottom: 350px;
-    margin: 0 auto;
     width: 100%;
     height: 500px;
+    border-top: 1px solid lightgray;
 }
 #popPost, #popSpot{
-    width: 46%;
+    width: 48%;
     height: 500px;
     float: left;
     margin-left: 1%;
 }
-.title{
+#popSpot{
+    border-right: 1px solid lightgray;
+}
+h2{
     width: 100%;
     height: 50px;
-    margin-left: 30px;
+    margin-left: 50px;
+    margin-top: 20px;
 }
 .popPostList{
     width: 40%;
@@ -152,6 +155,7 @@
     background-color: lightyellow;
     float: left;
     margin: 15px;
+
 }
 
 table.popPostListTbl {
@@ -177,26 +181,15 @@ table.popPostListTbl td {
 }
 table{
     height: 10%;
-    margin: 20px;
+    margin-left: 20px;
+    font-size: 10px;
 }
-th:first-child{
-    width: 10%;
-}
-th:nth-child(2){
-    width: 70%;
+td{
+    color: black;
 }
 #line{
     width: 1px;
     height: 500px;
-    background-color: lightslategray;
-    float: left;
-}
-hr{
-    position: relative;
-    bottom: 350px;
-    width: 100%;
-    height: 2px;
-    border : 0;
     background-color: lightgray;
-    margin-bottom: 30px;
+    float: left;
 }

@@ -16,7 +16,6 @@ import java.util.Optional;
 public class InformationService {
 
     private final UserRepository userRepository;
-    private final OwnerRepository ownerRepository;
 
     public User userInformation(String id){ //유저 정보 불러오기
         Optional<User> user = userRepository.findById(id);
@@ -26,14 +25,7 @@ public class InformationService {
             throw new DataNotFoundException("user not found");
         }
     }
-    public Owner ownerInformation(String id){ //사장님 정보 불러오기
-        Optional<Owner> owner = ownerRepository.findById(id);
-        if (owner.isPresent()){
-            return owner.get();
-        }else {
-            throw new DataNotFoundException("user not found");
-        }
-    }
+
     public void updateUser(String userId, String userPw){ //유저 정보 업데이트
             Optional<User> result = userRepository.findById(userId);
 
@@ -44,12 +36,4 @@ public class InformationService {
             }
     }
 
-    public void updateOwner(String userId, String userPw){ //유저 정보 업데이트
-        Optional<Owner> result = ownerRepository.findById(userId);
-        if(result.isPresent()){
-            Owner owner = result.get();
-            owner.setUserPw(userPw);
-            ownerRepository.save(owner);
-        }
-    }
 }

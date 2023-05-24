@@ -1,9 +1,7 @@
 package com.example.yj.post;
 
-import com.example.yj.entity.Owner;
 import com.example.yj.entity.Post;
 import com.example.yj.entity.PostFile;
-import com.example.yj.entity.User;
 import com.example.yj.information.InformationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

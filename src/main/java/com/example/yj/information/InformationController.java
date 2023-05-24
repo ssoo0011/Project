@@ -20,34 +20,17 @@ public class InformationController {
     public String userInformation(HttpSession session, Model model){
 
         String userId = (String)session.getAttribute("loginId"); //로그인 한 아이디
-        String userType = (String)session.getAttribute("userType"); //로그인한 사람의 유저타입 (user || owner)
-
-        if (userType.equals("user")){
-
-            User user = informationService.userInformation(userId);
-            model.addAttribute("user", user);
-            return "userInformation_form";
-
-        }else if (userType.equals("owner")){
-            Owner owner = informationService.ownerInformation(userId);
-            model.addAttribute("owner", owner);
-        }
-        return "ownerInformation_form";
-
+        User user = informationService.userInformation(userId);
+        model.addAttribute("user", user);
+        return "userInformation_form";
     }
 
     @PostMapping("/updateInfor")
     public String updateInformation(HttpSession session, String userPw){
 
         String userId = (String)session.getAttribute("loginId");
-        String userType = (String)session.getAttribute("userType");
+        informationService.updateUser(userId, userPw);
 
-        if (userType.equals("user")){
-            informationService.updateUser(userId, userPw);
-
-        }else if (userType.equals("owner")){
-            informationService.updateOwner(userId, userPw);
-        }
         return "redirect:/home/";
     }
 }

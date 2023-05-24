@@ -31,18 +31,6 @@ public class RegistService {
 
         userRepository.save(u);
     }
-
-    public void RegistOwner(Owner owner) {
-
-        Owner bsm = Owner.builder()
-                .userName(owner.getUserName())
-                .userId(owner.getUserId())
-                .userPw(owner.getUserPw())
-                .build();
-
-        ownerRepository.save(bsm);
-    }
-
     public int idCheck(String id) { //아이디 중복체크
         Optional<Owner> r1 = ownerRepository.findById(id);
         Optional<User> r2 = userRepository.findById(id);

@@ -4,9 +4,7 @@ import com.example.yj.entity.Owner;
 import com.example.yj.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/regist")
@@ -21,7 +19,7 @@ public class RegistController {
         return "regist_form";
     }
 
-    @PostMapping("/imcreate") // 유저 회원가입
+    @PostMapping("/create") // 유저 회원가입
     public String regist(@ModelAttribute User user,
                          @RequestParam String year,
                          @RequestParam String month,
@@ -30,14 +28,6 @@ public class RegistController {
         registService.RegistUser(user, year, month, day);
         return "redirect:/login";
 
-    }
-
-    @PostMapping("/ownercreate") //사장님 회원가입
-    public String regist(@ModelAttribute Owner owner){
-
-        registService.RegistOwner(owner);
-
-        return "redirect:/login";
     }
 
     //아이디 중복체크

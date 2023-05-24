@@ -44,8 +44,6 @@ class YjApplicationTests {
         // 결과 출력
         System.out.println(sb.toString());
 
-
-
     }
 
 }

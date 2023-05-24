@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/home.js}"></script>
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/home.css}" type="text/css">
-    <script type="text/javascript" th:src="@{/js/home.js}"></script>
     <title>Title</title>
 </head>
 <body>
@@ -22,58 +22,57 @@
             <div id="regist"><a th:href="@{/regist/create}">Regist</a></div>
         </div>
     </div>
-    <div id="travle">
-        <img src="../img/여름바다_UHD.jpg" alt="">
-        <div id="goDate">
-            <div class="label">날짜선택</div>
-            <input type="date" id="date">
-        </div>
-        <div id="spot">
-            <div class="label">장소선택</div>
-            <div class="search_boxes">
-                <div class="search_box">
-                    <select name="search_box" id="search_box" onchange="categoryChange(this)">
-                        <option value>시/도 선택</option>
-                        <option value="general01">강원</option>
-                        <option value="general02">경기</option>
-                        <option value="general03">경남</option>
-                        <option value="general04">경북</option>
-                        <option value="general05">광주</option>
-                        <option value="general06">대구</option>
-                        <option value="general07">대전</option>
-                        <option value="general08">부산</option>
-                        <option value="general09">서울</option>
-                        <option value="general10">울산</option>
-                        <option value="general11">인천</option>
-                        <option value="general12">전남</option>
-                        <option value="general13">전북</option>
-                        <option value="general14">제주</option>
-                        <option value="general15">충남</option>
-                        <option value="general16">충북</option>
-                    </select>
-                </div>
+    <form th:action="@{/makeSchedule}" method="post">
+        <div id="travel">
+            <img src="../img/여름바다_UHD.jpg" alt="">
+            <div id="goDate">
+                <div class="label">날짜선택</div>
+                <input type="date" id="date">
+            </div>
+            <div id="spot">
+                <div class="label">장소선택</div>
+                <div class="search_boxes">
+                    <div class="search_box">
+                        <select name="search_box" id="search_box" onchange="categoryChange(this)">
+                            <option value>시/도 선택</option>
+                            <option value="general01">강원</option>
+                            <option value="general02">경기</option>
+                            <option value="general03">경남</option>
+                            <option value="general04">경북</option>
+                            <option value="general05">광주</option>
+                            <option value="general06">대구</option>
+                            <option value="general07">대전</option>
+                            <option value="general08">부산</option>
+                            <option value="general09">서울</option>
+                            <option value="general10">울산</option>
+                            <option value="general11">인천</option>
+                            <option value="general12">전남</option>
+                            <option value="general13">전북</option>
+                            <option value="general14">제주</option>
+                            <option value="general15">충남</option>
+                            <option value="general16">충북</option>
+                        </select>
+                    </div>
 
-                <div class="search_box">
-                    <select name="" id="state">
-                        <option>군/구 선택</option>
-                    </select>
+                    <div class="search_box">
+                        <select name="" id="state">
+                            <option>군/구 선택</option>
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <input type="button" id="goBtn" value="여행하기">
-    <hr>
+        <input type="button" id="goBtn" value="여행하기">
+    </form>
     <div id="popList">
-            <h2 class="title">인기여행지</h2>
-            <div  id="popSpot">
-                <div th:each="popSpot : ${popSpotList}" class="popPostList">
-                    <a th:href="@{|/spot/popSpot/${popSpot}|}" th:text="${popSpot}"></a>
-                </div>
+        <div  id="popSpot">
+            <h2>인기여행지</h2>
+            <div th:each="popSpot : ${popSpotList}" class="popPostList">
+                <a th:href="@{|/spot/popSpot/${popSpot}|}" th:text="${popSpot}"></a>
             </div>
         </div>
-        <div id="line"></div>
+        <h2>인기게시글</h2>
         <div id="popPost">
-            <h2 class="title">인기게시글</h2>
             <a th:href="@{/post/list}">글보러가기</a></br>
             <div id="tblDiv">
                 <table class="popPostListTbl" style="width:90%">
@@ -94,6 +93,7 @@
                     </tr>
                     </tbody>
                 </table>
+                </div>
             </div>
         </div>
     </div>

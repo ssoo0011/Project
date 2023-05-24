@@ -1,42 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/style.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css">
     <title>Title</title>
 </head>
 <body>
-<a th:href="@{/home/}">홈</a>
-
-<div class="wrap">
-    <input type="radio" name="loginBox" value="개인회원" checked> 개인회원 </input>
-    <input type="radio" name="loginBox" value="사업자"> 사업자 </input>
-</div>
-<form th:action="@{/login/user}" method="post" id="loginForm">
-    <input type="text" name="userId">
-    <input type="password" name="userPw">
-    <button type="submit" id="loginBtn">로그인</button></br>
-    <a th:href="@{/regist/create}">회원가입</a>
-</form>
+    <div class="wrap">
+        <img src="../img/로고.png" id="home" onclick="home()">
+        <input type="text" placeholder="아이디" id="userId" name="userId">
+        <input type="password" placeholder="비밀번호" id="userPw" name="userPw">
+        <button type="button" id="loginBtn" onclick="loginCheck()">로그인</button>
+        <button type="button" id="registBtn" > 회원가입 </button>
+    </div>
 </body>
 </html>
 <script>
+    $('#registBtn').on('click', function (){
+        let url = '/regist/create'
+        location.replace(url)
+    })
+    function home(){
+        let url = '/home/'
+        location.replace(url)
+    }
+    //로그인 오류처리
+    function loginCheck(){
 
-    $("input[name='loginBox']").change(function () {
-        // 개인회원 선택시 사업자회원가입 숨기기
-        if ($("input[name='loginBox']:checked").val() == '개인회원') {
-        }
-        // 사업자회원 선택 시 개인회원가입 숨기기
-        else if ($("input[name='loginBox']:checked").val() == '사업자') {
-            $("#loginBtn").click(function (){
-                $("#loginForm").attr("action", "/login/owner")
+        let id = $('#userId').val();
+        let pw = $('#userPw').val();
+
+        if (id == ''){
+            alert('아이디를 입력하세요')
+        }else if (pw == ''){
+            alert('비밀번호를 입력하세요')
+        }else {
+            $('#loginBtn').attr('type', 'submit')
+
+            $.ajax({
+                url: '/login/user',
+                type:'post',
+                data:{
+                    id:id,
+                    pw:pw
+                },
+                success:function (cnt){
+                    if (cnt == 1){
+                        alert('로그인 성공!')
+                        let url = '/home/'
+                        location.replace(url)
+
+                    }else if (cnt == 0){
+                        alert('아이디 또는 비밀번호 오류입니다.')
+                    }
+                },
+                error:function (){
+                    alert("에러입니다.")
+                }
             })
         }
-    })
-112
-
-
+    }
 </script>

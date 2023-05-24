@@ -3,24 +3,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{/css/regist.css}" type="text/css">
     <title>Title</title>
   </head>
   <body>
-  <a th:href="@{/home/}">홈</a>
+  <img src="../img/로고.png" id="home" onclick="home()">
   <form th:action="@{/updateInfor}" method="post" id="userInfor">
-    <span>이름</span> <input type="text" name="userName"  th:placeholder="${user.userName}" readonly><br>
-    <span>아이디</span> <input type="text" name="userId" id="userId"
-                            oninput="idCheck()"  th:placeholder="${user.userId}" readonly><br>
-    <span class="id_ok"></span>
-    <br>
-    <span>비밀번호</span> <input type="password" name="userPw" class="pw1" placeholder="비밀번호">
-    <span>비밀번호 확인</span> <input type="password" class="pw2" placeholder="비밀번호 확인" oninput="pwConfirm()"><br>
-    <span class="pwCon"></span><br>
-
-      <span>생년월일</span><input type="text" th:placeholder="${user.birth}" readonly >
+    <div id="wrap">
+        <span>이름</span> <input type="text" name="userName"  th:placeholder="${user.userName}" readonly><br>
+        <span>아이디</span> <input type="text" name="userId" id="userId"
+                                oninput="idCheck()"  th:placeholder="${user.userId}" readonly><br>
+        <span class="id_ok"></span>
+        <br>
+        <span>비밀번호</span> <input type="password" name="userPw" class="pw1" placeholder="비밀번호"><br>
+        <span>비밀번호 확인</span> <input type="password" class="pw2" placeholder="비밀번호 확인" oninput="pwConfirm()">
+        <span class="pwCon"></span><br>
+          <span>생년월일</span><input type="text" th:placeholder="${user.birth}" readonly >
+        <span> </span><button type="button" id="updateBtn" onclick="updateFun()">회원정보 수정</button>
     </div>
-    <button type="button" id="updateBtn" onclick="updateFun()">회원정보 수정</button>
   </form>
   </body>
 </html>
@@ -44,4 +44,10 @@
       $("#updateBtn").attr("type", "submit")
     }
   }
+
+  function home(){
+      let url = '/home/'
+      location.replace(url)
+  }
+
 </script>
