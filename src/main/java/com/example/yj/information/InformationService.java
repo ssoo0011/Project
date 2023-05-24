@@ -1,14 +1,11 @@
 package com.example.yj.information;
 
 import com.example.yj.DataNotFoundException;
-import com.example.yj.entity.Owner;
 import com.example.yj.entity.User;
-import com.example.yj.repository.OwnerRepository;
 import com.example.yj.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Service

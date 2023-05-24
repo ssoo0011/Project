@@ -1,8 +1,6 @@
 package com.example.yj.login;
 
-import com.example.yj.entity.Owner;
 import com.example.yj.entity.User;
-import com.example.yj.repository.OwnerRepository;
 import com.example.yj.repository.UserRepository;
 import groovy.util.logging.Slf4j;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +14,6 @@ import java.util.Optional;
 public class LogInService {
 
     private final UserRepository userRepository;
-    private final OwnerRepository ownerRepository;
 
     //로그인(아이디/ 비밀번호)
     public boolean userLoginConfirm(String userId, String userPw){

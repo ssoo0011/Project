@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -32,8 +32,10 @@ public class MyScheduleController {
     }
 
     @PostMapping("/makeSchedule")
-    public String makeSchedule(Date startDate, String spot){
-
-        return "";
+    public String makeSchedule(Date startDate, String searchBox, String state, Model model){
+        model.addAttribute("startDate", startDate);
+        model.addAttribute("searchBox", searchBox);
+        model.addAttribute("state", state);
+        return "makeSchedule_form";
     }
 }

@@ -1,6 +1,5 @@
 package com.example.yj.information;
 
-import com.example.yj.entity.Owner;
 import com.example.yj.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
