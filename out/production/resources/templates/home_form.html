@@ -26,14 +26,14 @@
         <div id="travel">
             <img src="../img/여름바다_UHD.jpg" alt="">
             <div id="goDate">
-                <div class="label">날짜선택12</div>
-                <input type="date" id="date" name="startDate">
+                <div class="label">날짜선택</div>
+                <input type="date" id="startDate" name="startDate">
             </div>
             <div id="spot">
                 <div class="label">장소선택</div>
                 <div class="search_boxes">
                     <div class="search_box">
-                        <select name="searchBox" id="search_box" onchange="categoryChange(this)">
+                        <select name="city" id="city" onchange="categoryChange(this)">
                             <option value>시/도 선택</option>
                             <option value="1">서울특별시</option>
                             <option value="2">인천광역시</option>
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <input type="button" id="goBtn" value="여행하기">
+        <button type="button" id="goBtn">여행하기</button>
     </form>
     <div id="popList">
         <div  id="popSpot">
@@ -98,5 +98,7 @@
         </div>
     </div>
 </div>
+<!--<div id="loginId" >[[${session.loginId}]]</div>-->
+<input type="hidden" th:value="${session.loginId}" id="loginId">
 </body>
 </html>

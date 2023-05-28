@@ -1,6 +1,7 @@
 package com.example.yj.mySchedule;
 
 import com.example.yj.entity.MySchedule;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,13 +9,26 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
+import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
 public class MyScheduleController {
     private final MyScheduleService myScheduleService;
+
+
+    @PostMapping("/makeSchedule")
+    public String makeSchedule(String city,String state, Model model)throws URISyntaxException, JsonProcessingException {
+        int areaCode = Integer.parseInt(city);
+        //기본 콘텐츠타입 12
+
+        List<Map<String, Object>> itemMap = myScheduleService.getData(areaCode, state, 12, 1000);
+        model.addAttribute("itemMap", itemMap);
+        return "makeSchedule_form";
+    }
 
     @GetMapping("/mySchedule")
     //내가 간 장소들 데려오기
@@ -31,11 +45,4 @@ public class MyScheduleController {
         return "mySchedule_form";
     }
 
-    @PostMapping("/makeSchedule")
-    public String makeSchedule(Date startDate, String searchBox, String state, Model model){
-        model.addAttribute("startDate", startDate);
-        model.addAttribute("searchBox", searchBox);
-        model.addAttribute("state", state);
-        return "makeSchedule_form";
-    }
 }

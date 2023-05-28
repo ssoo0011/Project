@@ -62,7 +62,7 @@
     box-sizing: border-box;
 }
 
-#date{
+#startDate{
     display: block;
     width: 240px;
     height: 40px;

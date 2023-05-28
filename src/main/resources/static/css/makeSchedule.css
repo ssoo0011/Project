@@ -1,0 +1,128 @@
+
+img{
+    width: 350px;
+    height: 200px;
+}
+#showPlace{
+    width: 500px;
+    height: 900px;
+    background-color: lemonchiffon;
+    margin-top: 30px;
+    margin-left: 20px;
+    position: relative;
+    bottom: 1000px;
+    z-index: 3;
+}
+#scrollBtn{
+    width: 50px;
+    height: 30px;
+    font-size: 20px;
+    text-align: center;
+    border: none;
+    background-color: rgb(177, 218, 255);
+    float: right;
+    z-index: 10;
+
+}
+#scrollBtn:hover{
+    background-color: rgb(101, 196, 255);
+}
+#placeType{
+    width: 500px;
+    height: 100px;
+    background-color: paleturquoise;
+}
+#rhks, #tnrqkr, #tlrekd{
+    width: 100px;
+    height: 40px;
+    position: relative;
+    margin-right: -10px;
+    top: 60px;
+    border: none;
+}
+#rhks:hover, #tnrqkr:hover, #tlrekd:hover{
+    cursor: pointer;
+    background-color: rgb(101, 196, 255);;
+}
+#place{
+    width: 450px;
+    height: 700px;
+    background-color: white;
+    margin: 0 auto;
+    overflow: scroll;
+}
+.placeDetail{
+    width: 420px;
+    height: 300px;
+    background-color: wheat;
+    margin: 20px 0px 0px 5px;
+
+}
+.title{
+    font-size: 30px;
+}
+.addr1{
+    font-size: 10px;
+}
+.addPlace{
+    float: right;
+    margin: 10px 10px 0px 0px;
+    width: 30px;
+    height: 30px;
+    background-color: rgb(168, 223, 255);
+    border: none;
+    color: white;
+    font-size: 20px;
+    font-weight: 1000;
+}
+.addPlace:hover{
+    background-color: rgb(69, 187, 255);
+
+}
+
+#place::-webkit-scrollbar {
+    width: 12px;  /* 스크롤바의 너비 */
+}
+
+#place::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: rgb(104, 199, 255); /* 스크롤바의 색상 */
+
+    border-radius: 10px;
+}
+
+#place::-webkit-scrollbar-track {
+    background: white;  /*스크롤바 뒷 배경 색상*/
+}
+
+#addSchedule{
+    width: 400px;
+    height: 600px;
+    background-color: coral;
+    float: right;
+    right: 50px;
+    color: white;
+    font-size: 30px;
+    overflow: scroll;
+    position: relative;
+    bottom: 1800px;
+    right: 20px;
+    z-index: 3;
+}
+#map{
+    width: 1920px;
+    height:1000px;
+}
+.visitSpot{
+    padding-top: 20px;
+    box-sizing: border-box;
+    margin: auto;
+    width: 350px;
+    height: 100px;
+    background-color: lemonchiffon;
+    color: black;
+    border-bottom: 1px solid lightgray;
+}
+.up, .down, .delete{
+    float: right;
+}
