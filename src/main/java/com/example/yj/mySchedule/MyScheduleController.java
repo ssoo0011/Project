@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.net.URISyntaxException;
@@ -21,14 +23,27 @@ public class MyScheduleController {
 
 
     @PostMapping("/makeSchedule")
-    public String makeSchedule(String city,String state, Model model)throws URISyntaxException, JsonProcessingException {
-        int areaCode = Integer.parseInt(city);
+    public String makeSchedule(int city, String state,
+                               @RequestParam(value = "contentTypeId" , required = false, defaultValue = "12") int contentTypeId, Model model)throws URISyntaxException, JsonProcessingException {
         //기본 콘텐츠타입 12
-
-        List<Map<String, Object>> itemMap = myScheduleService.getData(areaCode, state, 12, 1000);
+        List<Map<String, Object>> itemMap = myScheduleService.getData(city, state, contentTypeId, 1000);
         model.addAttribute("itemMap", itemMap);
+        model.addAttribute("city", city);
+        model.addAttribute("state", state);
+
         return "makeSchedule_form";
     }
+
+    @PostMapping("/scheduleType")
+    @ResponseBody
+    public List<Map<String, Object>> scheduleType(int city, String state, int contentTypeId)throws URISyntaxException, JsonProcessingException {
+
+        //기본 콘텐츠타입 12
+        List<Map<String, Object>> itemMap = myScheduleService.getData(city, state, contentTypeId, 1000);
+
+        return itemMap;
+    }
+
 
     @GetMapping("/mySchedule")
     //내가 간 장소들 데려오기

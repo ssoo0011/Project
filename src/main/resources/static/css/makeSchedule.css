@@ -32,7 +32,7 @@ img{
     height: 100px;
     background-color: paleturquoise;
 }
-#rhks, #tnrqkr, #tlrekd{
+.contentTypeId{
     width: 100px;
     height: 40px;
     position: relative;

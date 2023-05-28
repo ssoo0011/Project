@@ -2,6 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" th:src="@{/js/makeSchedule.js}"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35db8ba64e4a5a1a02fe63ab0c062ab8"></script>
 <head>
     <meta charset="UTF-8">
@@ -9,14 +10,15 @@
     <title>Title</title>
 </head>
 <body>
-
+<input type="hidden" id="city" th:value="${city}">
+<input type="hidden" id="state" th:value="${state}">
 <div id="map">
 </div>
 <div id="showPlace">
     <div id="placeType">
-        <button id="rhks">관광</button>
-        <button id="tnrqkr">숙박</button>
-        <button id="tlrekd">식당</button>
+        <button class="contentTypeId" value="12">관광</button>
+        <button class="contentTypeId" value="32">숙박</button>
+        <button class="contentTypeId" value="39">식당</button>
     </div>
     <button id="scrollBtn">▼</button>
     <br>
@@ -29,97 +31,10 @@
             <img th:src="${itemMap.firstimage}" alt="사진">
             <button class="addPlace">+</button>
         </div>
-        <button id="">일정 완성</button>
     </div>
 </div>
 <div id="addSchedule">
-
+    <button id="scheduleSuccess">일정 완성</button>
 </div>
 </body>
 </html>
-<script>
-
-    let firstX = $('.x').first().val();
-    let firstY = $('.y').first().val();
-
-    var container = document.getElementById('map');
-    var options = {
-        center: new kakao.maps.LatLng(firstY, firstX),
-        level: 3
-    };
-
-    var map = new kakao.maps.Map(container, options);
-    var mapContainer = document.getElementById('map'), // 지도를 표시할 div
-        mapOption = {
-            center: new kakao.maps.LatLng(firstY, firstX), // 지도의 중심좌표
-            level: 3 // 지도의 확대 레벨
-        };
-
-    var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-
-    // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-    // marker.setMap(null);
-
-
-    $(function () {
-
-        $('.addPlace').on('click', function () {
-
-            let index = $('.addPlace').index(this);
-            let spot = $(".title").eq(index).text();
-
-            let x = $(".x").eq(index).val();
-            let y = $(".y").eq(index).val();
-            //
-            let makers = [];
-
-            // 마커가 표시될 위치입니다
-            var markerPosition  = new kakao.maps.LatLng(y, x);
-            // 마커가 지도 위에 표시되도록 설정합니다
-            var marker1 = new kakao.maps.Marker({
-                position: markerPosition
-            });
-            // 마커를 생성합니다
-            marker1.setMap(map);
-            makers.push(marker1);
-
-            // 해당 장소 있는지 확인
-            let exists = $('.visitSpot:contains(' + spot + ')').length > 0;
-
-            if (!exists) {
-                // 추가하지 않은 장소만 추가
-                $("#addSchedule").append("<div class='visitSpot'>" + spot +
-                    "<button class = 'delete'>X</button>" +
-                    "<button class = 'up'>▲</button>" +
-                    "<button class = 'down'>▼</button>" +
-                    "</div>");
-
-            } else alert('이미 추가한 장소입니다.')
-        });
-
-        $(document).on('click', '.up', function () {
-            let currentElement = $(this).parent(); // 현재 요소
-            let prevElement = currentElement.prev(); // 바로 위 요소
-
-            if (prevElement.length > 0) {
-                prevElement.before(currentElement); // 위치 변경
-            }
-        });
-
-        $(document).on('click', '.down', function () {
-            let currentElement = $(this).parent(); // 현재 요소
-            let prevElement = currentElement.next(); // 바로 위 요소
-
-            if (prevElement.length > 0) {
-                prevElement.after(currentElement); // 위치 변경
-            }
-        });
-
-        $(document).on('click', '.delete', function () {
-            $(this).parent().remove(); //현재요소
-        });
-
-    });
-
-</script>
