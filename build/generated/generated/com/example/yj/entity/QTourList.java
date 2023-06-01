@@ -10,16 +10,14 @@ import com.querydsl.core.types.Path;
 
 
 /**
- * QMySchedule is a Querydsl query type for MySchedule
+ * QTourList is a Querydsl query type for TourList
  */
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
-public class QMySchedule extends EntityPathBase<MySchedule> {
+public class QTourList extends EntityPathBase<TourList> {
 
-    private static final long serialVersionUID = 589856034L;
+    private static final long serialVersionUID = 1134013333L;
 
-    public static final QMySchedule mySchedule = new QMySchedule("mySchedule");
-
-    public final DatePath<java.sql.Date> date = createDate("date", java.sql.Date.class);
+    public static final QTourList tourList = new QTourList("tourList");
 
     public final StringPath imgSrc = createString("imgSrc");
 
@@ -27,20 +25,20 @@ public class QMySchedule extends EntityPathBase<MySchedule> {
 
     public final StringPath spot = createString("spot");
 
-    public final StringPath userId = createString("userId");
+    public final NumberPath<Long> tourSpotList = createNumber("tourSpotList", Long.class);
 
     public final StringPath visitSpot = createString("visitSpot");
 
-    public QMySchedule(String variable) {
-        super(MySchedule.class, forVariable(variable));
+    public QTourList(String variable) {
+        super(TourList.class, forVariable(variable));
     }
 
-    public QMySchedule(Path<? extends MySchedule> path) {
+    public QTourList(Path<? extends TourList> path) {
         super(path.getType(), path.getMetadata());
     }
 
-    public QMySchedule(PathMetadata metadata) {
-        super(MySchedule.class, metadata);
+    public QTourList(PathMetadata metadata) {
+        super(TourList.class, metadata);
     }
 
 }

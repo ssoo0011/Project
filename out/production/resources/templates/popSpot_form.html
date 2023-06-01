@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
-  <title>Title</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="head">
+  <title>Spring Boot</title>
+  <link th:href="@{/css/home.css}" rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="text/javascript" th:src="@{/js/home.js}"></script>
+</th:block>
 <body>
-<a th:href="@{/home/}">홈</a>
-<h1 th:text="|${area}의 인기장소!|"></h1>
+<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+<h1 th:text="|${spot}의 인기장소!|"></h1>
 <div th:each="popList : ${touristSpotList}">
-
-  <div th:text="${popList.tourSpot}"></div>
-
-  <div th:text="|${popList.visitNum}명이 방문~|"></div>
+  <div th:text="${popList.visitSpot}"></div>
+  <img th:src="${popList.imgSrc}">
 </div>
 </body>
 </html>

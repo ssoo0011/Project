@@ -4,11 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.sql.Date;
 
 @Data
 @Entity
@@ -23,8 +21,11 @@ public class MySchedule {
     private Long scheduleId; //스케쥴 번호
     @Column(nullable = false)
     private String spot; // 방문지역
-    @CreatedDate
-    private LocalDate date; //방문 날짜
+    @Column(nullable = false)
+    private String visitSpot; // 방문장소
+    private Date date; //방문 날짜
+    @Column
+    private String imgSrc; //이미지소스
     @Column(nullable = false)
     private String userId; // 아이디 가진사람
 

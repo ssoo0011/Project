@@ -78,7 +78,6 @@ function categoryChange(e) {
 
 $(function (){
 
-
     $('#goBtn').on('click', function (){
 
 
@@ -106,3 +105,5 @@ $(function (){
 
     })
 })
+
+

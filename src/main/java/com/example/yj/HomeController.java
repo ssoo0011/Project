@@ -24,7 +24,7 @@ public class HomeController {
         model.addAttribute("popSpotList", popSpotList);
         model.addAttribute("popPostList", popPostList);
 
-        return "home_form";
+        return "content/home_form";
     }
 
 

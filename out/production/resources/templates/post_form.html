@@ -1,48 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
-  <title>Title</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="head">
+    <title>My Schedule</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet"/>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/home.js}"></script>
+</th:block>
 <body>
-<a th:href="@{/home/}">홈</a>
-
+<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
 
     <form th:action="@{/post/create}" method="post" enctype="multipart/form-data">
         <div class="mb-3">
-          <label for="title" class="form-label">제목</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="제목">
+          <label for="title">제목</label>
+            <input type="text" id="title" name="title" placeholder="제목">
             <input type="hidden" name="scdId" th:value="${scdId}">
 
-          <label for="title" class="form-label">글쓴이</label>
-            <input type="text" class="form-control" id="writer" name="writer" th:placeholder="${session.loginId}"
+          <label for="title">글쓴이</label>
+            <input type="text" id="writer" name="writer" th:placeholder="${session.loginId}"
                    th:value="${session.loginId}" readonly/>
 
-          <label for="visitSpot" class="form-label" >방문지역</label>
-            <input type="text" class="form-control" id="visitSpot" name="visitSpot" th:placeholder="${spot}"
+          <label for="visitSpot" >방문지역</label>
+            <input type="text" id="visitSpot" name="visitSpot" th:placeholder="${spot}"
                  th:value="${spot}" readonly /><br>
 
-          <label for="visitDate" class="form-label" >방문날짜</label>
+          <label for="visitDate">방문날짜</label>
             <input type="date" name="visitDate" id="visitDate">
         </div>
         <div class="mb-3">
-          <label for="content" class="form-label">내용</label>
-          <textarea class="form-control" id="content" name="content" rows="30"></textarea>
+          <label for="content">내용</label>
+          <textarea id="content" name="content" rows="30"></textarea>
         </div>
 <!--        사진올리기-->
         <div class="mb-3">
-            <label for="imgFile" class="form-label" multiple>사진업로드</label>
-            <input type="file" class="form-control" id="imgFile" name="imgFile" multiple="multiple">
+            <label for="imgFile" multiple>사진업로드</label>
+            <input type="file"id="imgFile" name="imgFile" multiple="multiple">
 
         </div>
         <div class="mb-3">
-          <label for="content" class="form-label">공개여부</label>
-          <input type="radio" name="pub" value="t" class="form-check-input" checked>공개</input>
-          <input type="radio" name="pub" value="f" class="form-check-input">비공개</input>
+          <label for="content">공개여부</label>
+          <input type="radio" name="pub" value="t" checked>공개</input>
+          <input type="radio" name="pub" value="f">비공개</input>
         </div>
-        <button type="submit" class="btn btn-dark">POST</button>
+        <button type="submit">POST</button>
     </form>
 </body>
 </html>

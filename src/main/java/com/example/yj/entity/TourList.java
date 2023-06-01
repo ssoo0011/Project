@@ -14,14 +14,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "touristSpot") //테이블 이름
-public class TouristSpot {
+public class TourList {
 
     @Id
-    private String tourSpot; //관광지
-    @Column
-    private String area; // 지역
-    @Column
-    private Long visitNum; //방문횟수
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long tourSpotList;
 
+    @Column
+    private String spot; //방문지역
+    @Column
+    private String visitSpot; //방문장소들
+    @Column
+    private String imgSrc;
+    @Column
+    private Long scheduleId; //게시물 번호
 }

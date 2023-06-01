@@ -23,7 +23,7 @@ public class PostService {
     private final PostFileRepository postFileRepository;
     private final PostLikeUserRepository postLikeUserRepository;
     private final VisitUserIpsRepository visitUserIpsRepository;
-    private final TouristSpotRepository touristSpotRepository;
+    private final TourListRepository tourListRepository;
 
     public List<Post> getList() {
         return postRepository.findAll();

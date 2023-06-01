@@ -1,10 +1,9 @@
 package com.example.yj.mySchedule;
 
 import com.example.yj.entity.MySchedule;
-import com.example.yj.entity.Post;
+import com.example.yj.entity.TourList;
 import com.example.yj.repository.MyScheduleRepository;
-import com.example.yj.repository.PostRepository;
-import com.example.yj.repository.UserRepository;
+import com.example.yj.repository.TourListRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Date;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class MyScheduleService {
     private final MyScheduleRepository myScheduleRepository;
+    private final TourListRepository tourListRepository;
 
     // 세션에 저장된 아이디 유저가 방문한 장소들 모두 들고오기
     public List<MySchedule> getScheduleList(String loginId){
@@ -72,5 +73,32 @@ public class MyScheduleService {
 
 
         return testItemMap;
+    }
+
+    public void saveSchedule(String loginId, String state, String visitSpot, java.sql.Date startDate, String imgSrc){
+        MySchedule mySchedule = MySchedule.builder()
+                .date(startDate)
+                .spot(state)
+                .visitSpot(visitSpot)
+                .userId(loginId)
+                .imgSrc(imgSrc)
+                .build();
+
+        myScheduleRepository.save(mySchedule);
+
+        String[] visitSpotString = visitSpot.split(",");
+        String[] imgSrcString = imgSrc.split(",");
+
+        for (int i = 0; i < visitSpotString.length; i++){
+
+            TourList tourList = TourList.builder()
+                    .spot(state)
+                    .visitSpot(visitSpotString[i])
+                    .scheduleId(mySchedule.getScheduleId())
+                    .imgSrc(imgSrcString[i])
+                    .build();
+
+            tourListRepository.save(tourList);
+        }
     }
 }

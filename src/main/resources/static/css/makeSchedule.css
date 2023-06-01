@@ -6,7 +6,6 @@ img{
 #showPlace{
     width: 500px;
     height: 900px;
-    background-color: lemonchiffon;
     margin-top: 30px;
     margin-left: 20px;
     position: relative;
@@ -22,23 +21,34 @@ img{
     background-color: rgb(177, 218, 255);
     float: right;
     z-index: 10;
-
+    color: white;
 }
+
 #scrollBtn:hover{
     background-color: rgb(101, 196, 255);
 }
+
 #placeType{
+    position: relative;
+    top: 30px;
     width: 500px;
     height: 100px;
-    background-color: paleturquoise;
+}
+.contentTypeId:hover{
+    background-color: #5ccaff;
+    color : white;
+    font-weight: bold;
 }
 .contentTypeId{
     width: 100px;
     height: 40px;
     position: relative;
     margin-right: -10px;
+    font-size: 15px;
     top: 60px;
     border: none;
+    background-color: #f1f1f1;
+    border-radius: 4px;
 }
 #rhks:hover, #tnrqkr:hover, #tlrekd:hover{
     cursor: pointer;
@@ -118,10 +128,19 @@ img{
     box-sizing: border-box;
     margin: auto;
     width: 350px;
-    height: 100px;
+    height: 150px;
     background-color: lemonchiffon;
     color: black;
     border-bottom: 1px solid lightgray;
+    font-size: 13px;
+}
+.visitSpot>img{
+    height: 100px;
+    width: 100px;
+}
+input[type=image]{
+    height: 100px;
+    width: 100px;
 }
 .up, .down, .delete{
     float: right;

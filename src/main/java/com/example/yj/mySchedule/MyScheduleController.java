@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.net.URISyntaxException;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,13 +23,14 @@ public class MyScheduleController {
 
 
     @PostMapping("/makeSchedule")
-    public String makeSchedule(int city, String state,
+    public String makeSchedule(int city, String state, Date startDate,
                                @RequestParam(value = "contentTypeId" , required = false, defaultValue = "12") int contentTypeId, Model model)throws URISyntaxException, JsonProcessingException {
         //기본 콘텐츠타입 12
         List<Map<String, Object>> itemMap = myScheduleService.getData(city, state, contentTypeId, 1000);
         model.addAttribute("itemMap", itemMap);
         model.addAttribute("city", city);
         model.addAttribute("state", state);
+        model.addAttribute("startDate", startDate);
 
         return "makeSchedule_form";
     }
@@ -60,4 +61,13 @@ public class MyScheduleController {
         return "mySchedule_form";
     }
 
+    @PostMapping("/saveSchedule")
+    public String saveScheduleCon(HttpSession session,
+                                  String visitSpot, String state, Date startDate, String imgSrc){
+
+        String loginId = (String)session.getAttribute("loginId");
+        myScheduleService.saveSchedule(loginId, state, visitSpot, startDate, imgSrc);
+
+        return "redirect:/mySchedule";
+    }
 }

@@ -1,33 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" th:src="@{/js/home.js}"></script>
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/home.css}" type="text/css">
-    <title>Title</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="head">
+    <title>Spring Boot</title>
+    <link th:href="@{/css/home.css}" rel="stylesheet" />
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/home.js}"></script>
+</th:block>
 <body>
+<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+<div layout:fragment="content" class="content">
 <div id="wrap">
-    <div id="nav">
-        <a id="home" th:href="@{/home/}">Home</a>
-        <div th:if="${session.loginId != null}">
-            <div id="logout"><a th:href="@{/logout}"> Logout </a></div>
-            <div id="userInfor" name=""><a th:href="@{/userInfor}"> My information </a><br></div>
-            <div id="mySchedule" name=""><a th:href="@{/mySchedule}"> My schedule </a><br></div>
-            <h3 id="greeting" th:text="|${session.loginId}님 환영합니다!|"></h3>
-        </div>
-        <div th:unless="${session.loginId != null}">
-            <div id="login"><a th:href="@{/login}">Login</a></br></div>
-            <div id="regist"><a th:href="@{/regist/create}">Regist</a></div>
-        </div>
-    </div>
     <form th:action="@{/makeSchedule}" method="post">
         <div id="travel">
-            <img src="../img/여름바다_UHD.jpg" alt="">
+            <img src="../img/여름바다_UHD.jpg" alt="사진">
             <div id="goDate">
                 <div class="label">날짜선택</div>
-                <input type="date" id="startDate" name="startDate">
+                <input type="date" id="startDate" onchange="dateFun()" name="startDate">
             </div>
             <div id="spot">
                 <div class="label">장소선택</div>
@@ -71,8 +63,8 @@
                 <a th:href="@{|/spot/popSpot/${popSpot}|}" th:text="${popSpot}"></a>
             </div>
         </div>
-        <h2>인기게시글</h2>
         <div id="popPost">
+        <h2>인기게시글</h2>
             <a th:href="@{/post/list}">글보러가기</a></br>
             <div id="tblDiv">
                 <table class="popPostListTbl" style="width:90%">
@@ -98,7 +90,7 @@
         </div>
     </div>
 </div>
-<!--<div id="loginId" >[[${session.loginId}]]</div>-->
 <input type="hidden" th:value="${session.loginId}" id="loginId">
+</div>
 </body>
 </html>
