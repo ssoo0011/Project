@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/home")
@@ -19,9 +22,10 @@ public class HomeController {
     @GetMapping("/")
     public String goHome(Model model){
 
-        List<String> popSpotList = postService.popularSpot(); // 인기 장소 리스트 불러오기
+        Map<String, String>popSpotImgMap = postService.popularSpotImg(); //인기 장소, 사진 불러오기
         List<Post> popPostList = postService.popularPost(); // 인기 게시글 리스트 불러오기
-        model.addAttribute("popSpotList", popSpotList);
+
+        model.addAttribute("popSpotImgMap", popSpotImgMap);
         model.addAttribute("popPostList", popPostList);
 
         return "content/home_form";

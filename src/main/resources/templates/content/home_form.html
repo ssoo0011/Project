@@ -57,10 +57,11 @@
         <button type="button" id="goBtn">여행하기</button>
     </form>
     <div id="popList">
-        <div  id="popSpot">
+        <div id="popSpot">
             <h2>인기여행지</h2>
-            <div th:each="popSpot : ${popSpotList}" class="popPostList">
-                <a th:href="@{|/spot/popSpot/${popSpot}|}" th:text="${popSpot}"></a>
+            <div th:each="entry : ${popSpotImgMap}" class="popPostList">
+                <a th:href="@{|/spot/popSpot/${entry.key}|}" th:text="${entry.key}"></a>
+                <img th:src="${entry.value}">
             </div>
         </div>
         <div id="popPost">
@@ -78,10 +79,10 @@
                     </thead>
                     <tbody>
                     <tr th:each="popPost: ${popPostList}">
-                        <td class="noBorder"  th:text="${popPost.title}" ></td>
-                        <td class="noBorder" ><a th:href="@{|/post/detail/${popPost.bno}|}" th:text="${popPost.title}"></a></td>
-                        <td class="noBorder" th:text="${popPost.writer}" ></td>
-                        <td class="noBorder" th:text="${popPost.visitPost}"></td>
+                        <td  th:text="${popPost.title}" ></td>
+                        <td><a th:href="@{|/post/detail/${popPost.bno}|}" th:text="${popPost.title}"></a></td>
+                        <td th:text="${popPost.writer}" ></td>
+                        <td th:text="${popPost.visitPost}"></td>
                     </tr>
                     </tbody>
                 </table>

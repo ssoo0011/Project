@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.sql.Date;
 import java.util.List;
 
 @Controller
@@ -37,13 +38,15 @@ public class PostController {
     }
 
     @GetMapping("/check")
-    public String checkPost(@RequestParam Long scdId, String spot, Model model) {
+    public String checkPost(@RequestParam Long scdId, String spot, Date visitDate, Model model) {
         Post post = postService.getPost(scdId);
         if (post != null) {
             return "redirect:/post/detail/" + post.getBno();
         } else {
             model.addAttribute("scdId", scdId);
             model.addAttribute("spot", spot);
+            model.addAttribute("visitDate", visitDate);
+
             return "post_form";
         }
     }

@@ -18,12 +18,11 @@
             <button class="contentTypeId" value="32">숙박</button>
             <button class="contentTypeId" value="39">식당</button>
         </div>
-        <button id="scrollBtn">▼</button>
         <br>
         <div id="place">
             <div class="placeDetail" th:each="itemMap, loop : ${itemMap}">
-                <div class="title" th:text="${itemMap.title}"></div>
-                <div class="addr" th:text="${itemMap.addr1}"></div>
+                <div class="title" th:text="${itemMap.title}"></div><br>
+                <div class="addr" th:text="${itemMap.addr1}"></div><br>
                 <input type="hidden" class="x" th:value="${itemMap.mapx}">
                 <input type="hidden" class="y" th:value="${itemMap.mapy}">
                 <img class="spotImg" th:src="${itemMap.firstimage}" alt="사진">
@@ -31,13 +30,13 @@
             </div>
         </div>
     </div>
-<form th:action="@{/saveSchedule}" method="post">
-    <div id="addSchedule">
-        <input type="hidden" id="city" th:value="${city}" name="city">
-        <input type="hidden" id="state" th:value="${state}" name="state">
-        <input type="hidden" id="startDate" th:value="${startDate}" name="startDate">
-        <button id="scheduleSuccess">일정 완성</button>
-    </div>
-</form>
+    <form th:action="@{/saveSchedule}" method="post">
+        <div id="addSchedule">
+            <input type="hidden" id="city" th:value="${city}" name="city">
+            <input type="hidden" id="state" th:value="${state}" name="state">
+            <input type="hidden" id="startDate" th:value="${startDate}" name="startDate">
+            <button id="scheduleSuccess">일정 완성</button>
+        </div>
+    </form>
 </body>
 </html>

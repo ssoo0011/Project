@@ -104,6 +104,11 @@ $(function (){
         }
 
     })
+
+    $('.popPostList').on('click', function () {
+        let link = $(this).find('a').attr('href');
+        window.location.href = link;
+    });
 })
 
 

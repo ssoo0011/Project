@@ -164,6 +164,31 @@ public class PostService {
     public List<String> popularSpot() {
         List<String> popSpot = myScheduleRepository.findPopularSpot(); //인기장소 리스트
         return popSpot;
+    }
+    public Map<String, String> popularSpotImg(){
+        List<String> imgList = new ArrayList<>(); // 이미지를 저장할 리스트
+        List<String> popSpotList = popularSpot(); // 한 장소씩 나옴
+
+        for (String spot : popSpotList) {
+
+            List<TourList> tour = tourListRepository.findFirstBySpot(spot); // spot에 맞는 tourList들고오기
+
+            if (tour != null) {
+                for (int i = 0; i < tour.size(); i++){
+                    String img = tour.get(i).getImgSrc();
+                    imgList.add(img);
+                }
+            }
+        }
+        Map<String, String> popSpotImgMap = new LinkedHashMap<>(); //순서 있는 맵 만들기
+
+        for (int i = 0; i < popSpotList.size(); i++) {
+            String popSpot = popSpotList.get(i);
+            String img = imgList.get(i);
+            popSpotImgMap.put(popSpot, img);
+        }
+
+        return popSpotImgMap;
 
     }
     public List<Post> popularPost() { //젤 인기쟁이 글

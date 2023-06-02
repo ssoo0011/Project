@@ -12,10 +12,10 @@ public interface MyScheduleRepository extends JpaRepository<MySchedule, Long> {
 
     List<MySchedule> findByUserId(String userId);
 
-    @Query(value = "SELECT spot\n" +
-            "FROM   my_schedule\n" +
-            "GROUP  BY spot\n" +
-            "ORDER  BY Count(spot) DESC\n" +
+    @Query(value = "SELECT spot " +
+            "FROM   my_schedule " +
+            "GROUP  BY spot " +
+            "ORDER  BY Count(spot) DESC " +
             "LIMIT  4; ", nativeQuery = true)
     List<String> findPopularSpot(); //인기 젤 많은 장소 찾기
 

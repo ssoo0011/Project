@@ -17,4 +17,6 @@ public interface TourListRepository extends JpaRepository<TourList, Long> {
             "LIMIT  10;  ", nativeQuery = true)
     List<TourList> findMostVisitedSpots(@Param("spot") String spot);
 
+    List<TourList> findFirstBySpot(String spot);
+
 }

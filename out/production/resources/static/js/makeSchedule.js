@@ -23,8 +23,8 @@ $(function () {
                 itemMap.forEach(function(item) {
 
                     html += '<div class="placeDetail">' +
-                        '<div class="title">' + item.title + '</div>' +
-                        '<div class="addr">' + item.addr1 + '</div>' +
+                        '<div class="title">' + item.title + '</div><br>' +
+                        '<div class="addr">' + item.addr1 + '</div><br>' +
                         '<input type="hidden" class="x" value="' + item.mapx + '">' +
                         '<input type="hidden" class="y" value="' + item.mapy + '">' +
                         '<img class="spotImg" src="' + item.firstimage + '" alt="사진">' +
@@ -76,8 +76,8 @@ $(function () {
         if (!exists) {
             // 추가하지 않은 장소만 추가
             $("#addSchedule").append("<div class='visitSpot' name='visitSpot'>" + spot +
-                "<img src =  '" + img + "'>"+
-                "<button class = 'delete' type='button'>X</button>" +
+                "<br><img src =  '" + img + "'>"+
+                "<br><button class = 'delete' type='button'>X</button>" +
                 "<button class = 'up' type='button'>▲</button>" +
                 "<button class = 'down' type='button'>▼</button>" +
                 "<input type='hidden' name='visitSpot' value='" + spot + "'>"+

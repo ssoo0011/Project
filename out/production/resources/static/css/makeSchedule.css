@@ -1,7 +1,7 @@
 
 img{
-    width: 350px;
-    height: 200px;
+    width: 330px;
+    height: 180px;
 }
 #showPlace{
     width: 500px;
@@ -12,22 +12,6 @@ img{
     bottom: 1000px;
     z-index: 3;
 }
-#scrollBtn{
-    width: 50px;
-    height: 30px;
-    font-size: 20px;
-    text-align: center;
-    border: none;
-    background-color: rgb(177, 218, 255);
-    float: right;
-    z-index: 10;
-    color: white;
-}
-
-#scrollBtn:hover{
-    background-color: rgb(101, 196, 255);
-}
-
 #placeType{
     position: relative;
     top: 30px;
@@ -43,33 +27,37 @@ img{
     width: 100px;
     height: 40px;
     position: relative;
-    margin-right: -10px;
     font-size: 15px;
     top: 60px;
-    border: none;
+    border: solid 1px #f3f3f3;
     background-color: #f1f1f1;
-    border-radius: 4px;
+    margin-right: -6px;
 }
 #rhks:hover, #tnrqkr:hover, #tlrekd:hover{
     cursor: pointer;
     background-color: rgb(101, 196, 255);;
 }
 #place{
+    position: relative;
+    right: 30px;
+    top: 10px;
     width: 450px;
     height: 700px;
     background-color: white;
     margin: 0 auto;
     overflow: scroll;
+    border-radius: 7px;
 }
 .placeDetail{
     width: 420px;
     height: 300px;
-    background-color: wheat;
     margin: 20px 0px 0px 5px;
-
+    border-radius: 3px;
+    border: solid 1px lightgray;
 }
 .title{
-    font-size: 30px;
+    font-size: 25px;
+    font-weight: bold;
 }
 .addr1{
     font-size: 10px;
@@ -108,7 +96,7 @@ img{
 #addSchedule{
     width: 400px;
     height: 600px;
-    background-color: coral;
+    background-color: white;
     float: right;
     right: 50px;
     color: white;
@@ -128,8 +116,8 @@ img{
     box-sizing: border-box;
     margin: auto;
     width: 350px;
-    height: 150px;
-    background-color: lemonchiffon;
+    height: 180px;
+    background-color: #ececec;
     color: black;
     border-bottom: 1px solid lightgray;
     font-size: 13px;
@@ -138,10 +126,29 @@ img{
     height: 100px;
     width: 100px;
 }
+.visitSpot>button{
+    float: right;
+    width: 20px;
+    height: 20px;
+    background-color: rgb(168, 223, 255);
+    border: #eaeaea;
+    color: white;
+    font-size: 13px;
+}
+.visitSpot>button:hover{
+    background-color: rgb(103, 200, 255);
+
+}
 input[type=image]{
     height: 100px;
     width: 100px;
 }
+
 .up, .down, .delete{
     float: right;
+}
+#scheduleSuccess{
+    background-color: rgb(103, 200, 255);
+    color: white;
+    font-size: 17px;
 }

@@ -24,7 +24,7 @@
             <!-- 장소랑 스케쥴아이디 보내기-->
             <input type="hidden" class="imgSrcArray" th:value="${schedule.imgSrc}">
             <a th:text="${schedule.spot}"
-               th:href="@{/post/check(scdId=${schedule.scheduleId},spot=${schedule.spot})}"></a><br>
+               th:href="@{/post/check(scdId=${schedule.scheduleId},spot=${schedule.spot},visitDate=${schedule.date})}"></a><br>
             <span th:text = '${schedule.date}' name="visitDate"></span><br><br>
         </div>
     </div>
