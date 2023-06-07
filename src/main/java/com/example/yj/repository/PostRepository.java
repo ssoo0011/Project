@@ -17,5 +17,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     Page<Post> findAll(Pageable pageable);
     @Query(value = "SELECT * FROM post ORDER BY like_num DESC LIMIT 4", nativeQuery = true)
     List<Post> findPopPost(); //인기 젤 많은 글 찾기
+    Optional<Post> findByScdId(Long scdId);
 
 }

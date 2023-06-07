@@ -21,7 +21,6 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bno; //
-
     @Column
     private Long scdId; // 어떤 스케쥴의 게시물인지
     @Column(length = 200, nullable = false)

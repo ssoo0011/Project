@@ -71,7 +71,6 @@
                 <table class="popPostListTbl" style="width:90%">
                     <thead>
                     <tr>
-                        <th scope="row">순위</th>
                         <th scope="row" style="width:70%">제목</th>
                         <th scope="row">글쓴이</th>
                         <th scope="row">조회수</th>
@@ -79,7 +78,6 @@
                     </thead>
                     <tbody>
                     <tr th:each="popPost: ${popPostList}">
-                        <td  th:text="${popPost.title}" ></td>
                         <td><a th:href="@{|/post/detail/${popPost.bno}|}" th:text="${popPost.title}"></a></td>
                         <td th:text="${popPost.writer}" ></td>
                         <td th:text="${popPost.visitPost}"></td>

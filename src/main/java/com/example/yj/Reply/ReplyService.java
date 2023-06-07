@@ -2,6 +2,7 @@ package com.example.yj.Reply;
 
 import com.example.yj.entity.Post;
 import com.example.yj.entity.Reply;
+import com.example.yj.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

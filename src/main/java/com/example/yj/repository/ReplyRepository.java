@@ -1,4 +1,4 @@
-package com.example.yj.Reply;
+package com.example.yj.repository;
 
 import com.example.yj.entity.Reply;
 import org.springframework.data.jpa.repository.JpaRepository;

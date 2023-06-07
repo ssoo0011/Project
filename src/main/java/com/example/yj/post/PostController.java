@@ -37,12 +37,15 @@ public class PostController {
         return "redirect:/post/list"; //글 다 쓰면 리스트로
     }
 
-    @GetMapping("/check")
+    @GetMapping("/check")  //게시글 있는지 없는지 체크
     public String checkPost(@RequestParam Long scdId, String spot, Date visitDate, Model model) {
-        Post post = postService.getPost(scdId);
+
+        Post post = postService.getPost(scdId); //스케쥴 아이디로 게시글 여부 체크
+
         if (post != null) {
-            return "redirect:/post/detail/" + post.getBno();
+            return "redirect:/post/detail/" + post.getBno(); //있으면 게시글로 이동
         } else {
+            //없으면 게시글 쓰러 가기
             model.addAttribute("scdId", scdId);
             model.addAttribute("spot", spot);
             model.addAttribute("visitDate", visitDate);
@@ -91,17 +94,16 @@ public class PostController {
         return "redirect:/post/list";
     }
 
-    @GetMapping("/vote/{bno}") //추천수
-    public String postVote(HttpSession session, @PathVariable("bno") Long bno) {
-
-        Post post = this.postService.getPost(bno);
-        String loginId = (String) session.getAttribute("loginId");
-        //로그인아이디가 유저에있는지 오너에있는지
-        postService.voteUser(bno, loginId);
-        return String.format("redirect:/post/detail/%s", bno);
+    @PostMapping("/vote") //추천수
+    @ResponseBody
+    public int postVote(Long bno, HttpSession session) {
+        String loginId = (String)session.getAttribute("loginId");
+        int cnt = postService.voteUser(bno, loginId);
+        return cnt;
     }
 
     //지역명으로 게시글 찾기
+
     @PostMapping("/search") //게시글 검색
     public String searchSpotCon(@RequestParam("visitSpot") String spot,
                                 @RequestParam(value = "page", defaultValue = "0") int page, Model model) {

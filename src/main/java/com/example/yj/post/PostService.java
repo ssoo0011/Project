@@ -86,7 +86,7 @@ public class PostService {
     }
     public void modifyPost(Post post, List<MultipartFile> imgFile) throws Exception {
 
-        file1(imgFile, post.getBno());
+        String fileName = "";
 
         Optional<Post> result = postRepository.findById(post.getBno());
 
@@ -95,6 +95,13 @@ public class PostService {
             post1.update(post.getTitle(), post.getContent(),
                     post.getPub());
             postRepository.save(post1);
+
+            for (MultipartFile file : imgFile){
+                fileName = file.getOriginalFilename();
+            }
+            if (!fileName.equals("")){
+                file1(imgFile, post1.getBno());
+            }
         }
 
     }
@@ -118,8 +125,10 @@ public class PostService {
     }
 
 
-    public Post getPost(Long id) {
-        Optional<Post> result = this.postRepository.findById(id);
+    public Post getPost(Long bno) { //스케쥴 아이디로 게시글 여부 체크
+
+        Optional<Post> result = this.postRepository.findById(bno);
+
         if (result.isPresent()) {
             return result.get();
         } else {
@@ -135,7 +144,7 @@ public class PostService {
         }else return null;
     }
 
-    public void updateVisitPost(Long bno, String userIp) {
+    public void updateVisitPost(Long bno, String userIp) { // ip주소로 조회수 체크0
 
         Post post = postRepository.findById(bno).orElseThrow(() -> new IllegalArgumentException("Invalid post ID"));
         Optional<VisitUserIps> result = visitUserIpsRepository.findById(userIp);
@@ -165,6 +174,7 @@ public class PostService {
         List<String> popSpot = myScheduleRepository.findPopularSpot(); //인기장소 리스트
         return popSpot;
     }
+
     public Map<String, String> popularSpotImg(){
         List<String> imgList = new ArrayList<>(); // 이미지를 저장할 리스트
         List<String> popSpotList = popularSpot(); // 한 장소씩 나옴
@@ -213,9 +223,10 @@ public class PostService {
         }
     }
 
-    public void voteUser(Long bno, String userId) {
+    public int voteUser(Long bno, String userId) {
 
         List<PostLikeUser> likeUsers = postLikeUserRepository.findByBnoAndLikeUserId(bno, userId);
+
         if (likeUsers.size() == 0) { //좋아요 안했으면
 
             PostLikeUser postLikeUser = PostLikeUser.builder()
@@ -225,10 +236,12 @@ public class PostService {
             postLikeUserRepository.save(postLikeUser); //레파지토리에 저장
             likeUsers.add(postLikeUser);
             likePost(bno);
+            return 1;
 
         } else{ //좋아요 이미 했으면
-            postLikeUserRepository.deleteLikeUser(bno, userId);
+            postLikeUserRepository.deleteLikeUserId(bno, userId);
             unLikePost(bno);
+            return 0;
         }
     }
 
