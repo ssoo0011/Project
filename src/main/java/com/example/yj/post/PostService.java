@@ -124,10 +124,20 @@ public class PostService {
         }
     }
 
-
-    public Post getPost(Long bno) { //스케쥴 아이디로 게시글 여부 체크
+    public Post getPostBno(Long bno) { // bno로 게시글 여부 체크
 
         Optional<Post> result = this.postRepository.findById(bno);
+
+        if (result.isPresent()) {
+            return result.get();
+        } else {
+            return null;
+        }
+    }
+
+    public Post getPost(Long scdId) { //스케쥴 아이디로 게시글 여부 체크
+
+        Optional<Post> result = this.postRepository.findByScdIdAndPub(scdId, "t");
 
         if (result.isPresent()) {
             return result.get();
@@ -251,7 +261,7 @@ public class PostService {
         sorts.add(Sort.Order.desc("postDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 한 페이지에 10개씩, 정렬기준-> 최신게시물순
 
-        return postRepository.findByVisitSpot(visitSpot, pageable);
+        return postRepository.findByVisitSpotContains(visitSpot, pageable);
     }
 
     public void deletePost(Long bno) {

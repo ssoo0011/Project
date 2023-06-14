@@ -60,7 +60,7 @@
         <div id="popSpot">
             <h2>인기여행지</h2>
             <div th:each="entry : ${popSpotImgMap}" class="popPostList">
-                <a th:href="@{|/spot/popSpot/${entry.key}|}" th:text="${entry.key}"></a>
+                <a th:href="@{|/spot/popSpot/${entry.key}|}" th:text="${entry.key}"></a><br>
                 <img th:src="${entry.value}">
             </div>
         </div>
@@ -73,14 +73,14 @@
                     <tr>
                         <th scope="row" style="width:70%">제목</th>
                         <th scope="row">글쓴이</th>
-                        <th scope="row">조회수</th>
+                        <th scope="row">추천수</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="popPost: ${popPostList}">
                         <td><a th:href="@{|/post/detail/${popPost.bno}|}" th:text="${popPost.title}"></a></td>
                         <td th:text="${popPost.writer}" ></td>
-                        <td th:text="${popPost.visitPost}"></td>
+                        <td th:text="${popPost.likeNum}"></td>
                     </tr>
                     </tbody>
                 </table>

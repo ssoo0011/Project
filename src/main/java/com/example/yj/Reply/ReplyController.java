@@ -21,7 +21,7 @@ public class ReplyController {
 
     public String createReplyCon(HttpSession session, @PathVariable("bno") Long bno, String content,
                                  Model model){
-        Post post = postService.getPost(bno);
+        Post post = postService.getPostBno(bno);
         String loginId = (String)session.getAttribute("loginId");
         replyService.createReplService(loginId, content, post);
         return "redirect:/post/detail/"+bno;

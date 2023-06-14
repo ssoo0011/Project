@@ -14,12 +14,14 @@
 <body>
     <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
 
-    <h2 id="sessionId" th:text="|${session.loginId}님의 일정4!|"></h2>
+    <h2 id="sessionId" th:text="|${session.loginId}님의 일정|"></h2><br>
+    <hr><br>
     <div th:if="${#lists.size(ScheduleList) == 0}">
-        <a th:href="@{/home/}">내 일정 만들기</a>
+        <h3>일정이 존재하지 않습니다.</h3>
+        <a th:href="@{/home/}"  id="makeSchedule">내 일정 만들기</a>
     </div>
 
-    <div th:unless="${#lists.size(ScheduleList) == 0}">
+    <div th:unless="${#lists.size(ScheduleList) == 0}" id="scheduleDiv">
         <div th:each="schedule : ${ScheduleList}" class="visitSpot">
             <!-- 장소랑 스케쥴아이디 보내기-->
             <input type="hidden" class="imgSrcArray" th:value="${schedule.imgSrc}">

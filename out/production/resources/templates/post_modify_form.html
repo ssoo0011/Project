@@ -1,40 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<head>
-  <meta charset="UTF-8">
-  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" type="text/css">
-  <title>Title</title>
-</head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/default_layout}">
+<th:block layout:fragment="head">
+  <title>Spring Boot</title>
+  <link th:href="@{/css/postForm.css}" rel="stylesheet" />
+  <link th:href="@{/css/home.css}" rel="stylesheet" />
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+</th:block>
 <body>
-<a th:href="@{/home/}">홈</a>
+<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+<body>
 <form th:action="@{/post/modify}" method="post" id="postDetailForm" enctype="multipart/form-data">
-  <div class="container my-3" >
+  <div id="postBox" >
     <!-- 게시글 -->
-    <label>제목</label>
-    <input type="text" class="form-control" th:value="${post.title}" name ='title' id="title"></h2>
+    <input type="text" id="title" name="title" th:value="${post.title}" placeholder="제목"><br>
     <input type="hidden" th:value="${post.bno}" name="bno">
-    <label>내용</label>
-    <div class="card my-3">
-      <div class="card-body">
-        <span th:text="${post.getVisitPost()}"></span>
-        <textarea class="form-control" name="content" id="content" rows="30" placeholder="내용">[[${post.content}]]</textarea>
-        <div class="d-flex justify-content-end">
-          <div class="badge bg-light text-dark p-2 text-start">
-            <div th:text="${#temporals.format(post.postDate, 'yyyy-MM-dd HH:mm')}"></div>
-          </div>
-          <div class="mb-3">
-            <label for="imgFile" class="form-label" multiple>사진업로드</label>
-            <input type="file" class="form-control" id="imgFile" name="imgFile">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="mb-3">
-      <label for="content" class="form-label">공개여부</label>
-      <input type="radio" name="pub" value="t" class="form-check-input" checked>공개</input>
-      <input type="radio" name="pub" value="f" class="form-check-input">비공개</input>
-    </div>
+    <input type="hidden" th:value="${post.scdId}" name="scdId">
+
+    <input type="text" id="writer" name="writer" th:placeholder="${session.loginId}"
+           th:value="${session.loginId}" readonly/>
+
+    <input type="text" id="visitSpot" name="visitSpot" th:placeholder="${post.visitPost}"
+           th:value="${post.visitPost}" readonly/>
+
+    <input type="date" readonly name="visitDate" id="visitDate" th:value="${post.visitDate}" th:placeholder="${visitDate}"><br>
+    <textarea id="content" name="content" placeholder="내용" rows="36">[[${post.content}]]</textarea><br>
+    <!--        사진올리기-->
+    <label for="imgFile" multiple>사진업로드</label>
+    <input type="file" id="imgFile" name="imgFile" multiple="multiple">
+
+    <label for="content">공개여부</label>
+    <input type="radio" name="pub" value="t" checked>공개</input>
+    <input type="radio" name="pub" value="f">비공개</input>
       <button type="button" id="modifyBtn">수정하기</button>
     </div>
 </form>

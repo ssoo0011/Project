@@ -8,8 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,7 +26,7 @@ public class HomeController {
         model.addAttribute("popSpotImgMap", popSpotImgMap);
         model.addAttribute("popPostList", popPostList);
 
-        return "content/home_form";
+        return "home_form";
     }
 
 
