@@ -83,7 +83,7 @@ img{
 .comment{
     margin: 15px 0 10px 0;
 }
-.modiBtn{
+.modiBtn, .delBtn{
     float: right;
     margin-right: 20px;
     text-decoration: underline;

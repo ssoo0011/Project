@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -64,7 +65,7 @@ public class PostService {
         Post p = Post.builder()
                 .scdId(scdId)
                 .visitSpot(post.getVisitSpot()) //방문장소
-                .postDate(LocalDate.now()) //글쓴시간
+//                .postDate(LocalDateTime.now()) //글쓴시간
                 .title(post.getTitle()) // 제목
                 .content(post.getContent()) // 내용
                 .visitPost(0) //기본 조회수
@@ -110,7 +111,7 @@ public class PostService {
         List<Sort.Order> sorts = new ArrayList<>();
         sorts.add(Sort.Order.desc("postDate"));
         Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts)); // 한 페이지에 10개씩, 정렬기준-> 최신게시물순
-        return this.postRepository.findByPub("t", pageable); //공개여부 공개로 되어있는 게시글만 보기
+        return this.postRepository.findByPubOrderByPostDateDesc("t", pageable); //공개여부 공개로 되어있는 게시글만 보기
     }
 
     public Post getPost(Long id, String userIp) {

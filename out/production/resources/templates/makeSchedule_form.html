@@ -31,11 +31,11 @@
         </div>
     </div>
     <form th:action="@{/saveSchedule}" method="post">
+        <input type="hidden" id="startDate" th:value="${startDate}" name="startDate">
         <div id="addSchedule">
+            <button id="scheduleSuccess">일정생성</button>
             <input type="hidden" id="city" th:value="${city}" name="city">
             <input type="hidden" id="state" th:value="${state}" name="state">
-            <input type="hidden" id="startDate" th:value="${startDate}" name="startDate">
-            <button id="scheduleSuccess">일정 완성</button>
         </div>
     </form>
 </body>

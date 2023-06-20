@@ -75,7 +75,8 @@ $(function () {
 
         if (!exists) {
             // 추가하지 않은 장소만 추가
-            $("#addSchedule").append("<div class='visitSpot' name='visitSpot'>" + spot +
+            $("#addSchedule").append(
+                "<div class='visitSpot' name='visitSpot'>" + spot +
                 "<br><img src =  '" + img + "'>"+
                 "<br><button class = 'delete' type='button'>X</button>" +
                 "<button class = 'up' type='button'>▲</button>" +

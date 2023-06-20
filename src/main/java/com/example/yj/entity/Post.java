@@ -6,6 +6,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,7 +33,7 @@ public class Post {
     @Column(nullable = false)
     private java.sql.Date visitDate; //방문날짜
     @CreatedDate
-    private LocalDate postDate; // 글쓴 날
+    private LocalDateTime postDate; // 글쓴 날
     @Column(nullable = false)
     private Integer visitPost; // 조회수
     @Column(nullable = false)

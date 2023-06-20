@@ -26,7 +26,7 @@ public class QPost extends EntityPathBase<Post> {
 
     public final NumberPath<Integer> likeNum = createNumber("likeNum", Integer.class);
 
-    public final DatePath<java.time.LocalDate> postDate = createDate("postDate", java.time.LocalDate.class);
+    public final DateTimePath<java.time.LocalDateTime> postDate = createDateTime("postDate", java.time.LocalDateTime.class);
 
     public final StringPath pub = createString("pub");
 

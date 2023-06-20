@@ -38,11 +38,11 @@
         <a th:if="${session.loginId == post.writer}" th:text="삭제하기"
            th:href="@{|/post/delete/${post.bno}|}">삭제하기</a>
     </div><br>
-    <h5 th:text="|${#lists.size(post.replyList)}개의 댓글 있습니다.|"></h5>
+    <h5 id="commentNum" th:text="|${#lists.size(post.replyList)}개의 댓글 있습니다.|"></h5>
     <div class="commentDiv" th:each="reply, replyStat : ${post.replyList}">
     <!--     댓글의 갯수 표시-->
     <!-- 댓글 반복 시작 -->
-        <div id="commentBox">
+        <div th:class="|commentBox${replyStat.index}|" id="commentBox">
             <span th:text="|${reply.replyId}님의 댓글|" id="replyId"></span>
             <span id="replyDate" th:text="${#temporals.format(reply.replyDate, 'yyyy-MM-dd')}"></span>
             <div th:value="|rno${reply.rno}|" th:id="${replyStat.index}" style="display: none">[[${reply.rno}]]
@@ -50,6 +50,7 @@
             <div class="comment" th:text="${reply.content}" th:id="|reply${replyStat.index}|"></div>
             <div th:if="${session.loginId == reply.replyId}">
                 <button class="modiBtn" th:id="${replyStat.index}"> 댓글 수정</button>
+                <button class="delBtn" th:id="${replyStat.index}"> 댓글 삭제</button>
             </div>
         </div>
         <!--댓글수정-->
@@ -78,6 +79,7 @@
     let loginId = /*[[${session.loginId}]]*/
     var bno = /*[[${post.bno}]]*/
     var a = 0;
+    let commentNum = /*[[${#lists.size(post.replyList)}]]*/
 
     $(function () {
 
@@ -137,6 +139,30 @@
                 alert('댓글 수정 완료')
                 $('.moF').hide()
                 $('#reply' + a).text(content)
+            },
+            error: function(xhr, status, error){
+                console.log(status, error);
+            }
+        })
+    })
+
+    $('.delBtn').on('click', function () {
+
+        let rno = $('#' + a).text()
+
+        $.ajax({
+            url: '/reply/delete/' + rno,
+            type: 'get',
+            data: {
+                rno : rno,
+                bno : bno
+            },
+
+            success: function (cnt) {
+                alert('댓글 삭제 완료')
+                $('.moF').hide()
+                $('.commentBox' + a).hide()
+                $('#commentNum').text((commentNum-1)+'개의 댓글이 있습니다.')
             },
             error: function(xhr, status, error){
                 console.log(status, error);

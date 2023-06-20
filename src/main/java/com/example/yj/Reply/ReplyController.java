@@ -5,6 +5,7 @@ import com.example.yj.post.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -33,5 +34,14 @@ public class ReplyController {
         return "redirect:/post/detail/"+bno;
 
     }
+
+
+    @GetMapping("/reply/delete/{rno}") //댓글 수정
+    public String deleteReplyCon(@PathVariable("rno") Long rno, Long bno){
+        replyService.deleteReply(rno);
+        return "redirect:/post/detail/"+bno;
+
+    }
+
 
 }

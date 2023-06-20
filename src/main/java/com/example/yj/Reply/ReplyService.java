@@ -35,4 +35,7 @@ public class ReplyService {
         }
     }
 
+    public void deleteReply(Long rno) {
+        repository.deleteById(rno);
+    }
 }
